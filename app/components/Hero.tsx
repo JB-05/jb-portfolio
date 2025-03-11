@@ -9,7 +9,11 @@ import { TypewriterText } from './shared/TypewriterText';
 import Image from 'next/image';
 import { useState } from 'react';
 
-const socialLinks = [
+const socialLinks: Array<{
+  name: string;
+  href: string;
+  icon: "github" | "linkedin" | "email";
+}> = [
   { name: 'GitHub', href: 'https://github.com/jb-05', icon: 'github' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/joel-biju-285527289', icon: 'linkedin' },
   { name: 'Email', href: 'mailto:work.joelbiju@gmail.com', icon: 'email' },

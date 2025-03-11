@@ -1,13 +1,13 @@
 'use client';
 
-import { type ReactNode, memo } from 'react';
+import { type ReactNode, memo, RefObject } from 'react';
 import { motion } from 'framer-motion';
 
 interface SectionProps {
   id: string;
   children: ReactNode;
   className?: string;
-  ref?: any;
+  ref?: RefObject<HTMLElement>;
   fullHeight?: boolean;
 }
 
