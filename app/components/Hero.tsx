@@ -130,7 +130,7 @@ export const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Hi, I&apos;m JB
+              Hi, I&apos;m Joel Biju
             </motion.h1>
             <motion.p 
               className="text-xl md:text-2xl text-gray-300 mb-6"
