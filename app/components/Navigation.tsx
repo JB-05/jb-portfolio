@@ -2,14 +2,13 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 const navItems = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
-  { id: 'achievements', label: 'Achievements' },
   { id: 'projects', label: 'Projects' },
+  { id: 'achievements', label: 'Achievements' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -23,46 +22,27 @@ export const Navigation = () => {
     restDelta: 0.001,
   });
 
-  // Create refs for each section with optimized threshold
-  const sectionRefs = navItems.reduce((acc, item) => {
-    const [ref, inView, entry] = useInView({
-      threshold: 0.3, // Reduced threshold for better detection
-      triggerOnce: false,
-      rootMargin: '-80px 0px -80% 0px', // Optimized root margin
-    });
-    acc[item.id] = { ref, inView, entry };
-    return acc;
-  }, {} as Record<string, { ref: any; inView: boolean; entry?: IntersectionObserverEntry }>);
-
-  // Optimized scroll handler with debounce
-  const handleScroll = useCallback(() => {
-    const sections = Object.entries(sectionRefs);
-    const visibleSections = sections.filter(([_, { inView }]) => inView);
-    
-    if (visibleSections.length > 0) {
-      const mostVisibleSection = visibleSections.reduce((prev, current) => {
-        const prevRatio = sectionRefs[prev[0]].entry?.intersectionRatio || 0;
-        const currentRatio = sectionRefs[current[0]].entry?.intersectionRatio || 0;
-        return currentRatio > prevRatio ? current : prev;
-      });
-      
-      setActiveSection(mostVisibleSection[0]);
-    }
-  }, [sectionRefs]);
-
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    const debouncedScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(handleScroll, 100);
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+          setActiveSection(entry.target.id);
+        }
+      });
     };
 
-    window.addEventListener('scroll', debouncedScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', debouncedScroll);
-      clearTimeout(timeoutId);
-    };
-  }, [handleScroll]);
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.3,
+      rootMargin: '-80px 0px -80% 0px'
+    });
+
+    navItems.forEach(item => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);

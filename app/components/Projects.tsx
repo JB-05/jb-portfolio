@@ -23,7 +23,7 @@ const projects: Project[] = [
       "AI-Powered Risk Prediction for early malnutrition detection",
       "Smart meal analysis with nutritional improvement suggestions",
       "Government scheme integration for nutrition benefits",
-      "Community-driven support system with 'Adopt a Child' feature",
+      "Community-driven support system with &apos;Adopt a Child&apos; feature",
       "Gamified engagement for healthy eating habits",
       "Multi-child health dashboard for parents and healthcare workers"
     ],

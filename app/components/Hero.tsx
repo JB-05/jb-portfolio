@@ -9,22 +9,34 @@ import { TypewriterText } from './shared/TypewriterText';
 import Image from 'next/image';
 import { useState } from 'react';
 
-const socialLinks: Array<{
+type SocialLinkProps = {
   name: string;
   href: string;
   icon: "github" | "linkedin" | "email";
-}> = [
-  { name: 'GitHub', href: 'https://github.com/jb-05', icon: 'github' },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/joel-biju-285527289', icon: 'linkedin' },
-  { name: 'Email', href: 'mailto:work.joelbiju@gmail.com', icon: 'email' },
+};
+
+const socialLinks: SocialLinkProps[] = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/jb',
+    icon: 'github',
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://linkedin.com/in/jb',
+    icon: 'linkedin',
+  },
+  {
+    name: 'Email',
+    href: 'mailto:jb@gmail.com',
+    icon: 'email',
+  },
 ];
 
-const typingTexts = [
-  "Full-Stack Developer",
-  "Mobile App Developer",
-  "Flutter Expert",
-  "Problem Solver",
-  "Hackathon Champion"
+const texts = [
+  'Full Stack Developer',
+  'UI/UX Designer',
+  'Problem Solver',
 ];
 
 const scrollToSection = (sectionId: string) => {
@@ -117,7 +129,7 @@ export const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Hi, I'm <span className="text-blue-400">Joel Biju</span>
+              Hi, I&apos;m JB
             </motion.h1>
             <motion.p 
               className="text-xl md:text-2xl text-gray-300 mb-6"
@@ -125,7 +137,7 @@ export const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <TypewriterText texts={typingTexts} />
+              I am a <TypewriterText texts={texts} />
             </motion.p>
             <motion.p 
               className="text-gray-400 text-lg mb-8 max-w-2xl"

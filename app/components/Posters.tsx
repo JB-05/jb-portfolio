@@ -95,9 +95,9 @@ export const Posters = () => {
   const [selectedPoster, setSelectedPoster] = useState<{ image: string; title: string } | null>(null);
 
   const posters = [
-    { image: "/posters/poster1.jpg", title: "Creative Design" },
-    { image: "/posters/poster2.png", title: "Modern Art" },
-    { image: "/posters/poster3.jpg", title: "Digital Innovation" }
+    { image: "/posters/poster1.jpg", title: "Esports Poster" },
+    { image: "/posters/poster2.png", title: "Esports Poster" },
+    { image: "/posters/poster3.jpg", title: "Esports Poster" }
   ];
 
   return (

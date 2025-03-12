@@ -32,7 +32,6 @@ export default function Home() {
       <Projects />
       <Achievements />
       <Posters />
-      <Contact />
     </main>
   );
 } 

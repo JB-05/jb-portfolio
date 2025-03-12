@@ -10,38 +10,39 @@ interface TypewriterTextProps {
 }
 
 export const TypewriterText = ({ texts, className = '', delay = 0 }: TypewriterTextProps) => {
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [textIndex, setTextIndex] = useState(0);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    if (currentIndex < texts[textIndex].length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(prev => prev + texts[textIndex][currentIndex]);
-        setCurrentIndex(prev => prev + 1);
-      }, 50);
+    const typeSpeed = 100;
+    const deleteSpeed = 50;
+    const pauseDuration = 2000;
 
-      return () => clearTimeout(timeout);
-    } else if (textIndex < texts.length - 1) {
-      // Wait before starting next text
-      const timeout = setTimeout(() => {
-        setDisplayText('');
-        setCurrentIndex(0);
-        setTextIndex(prev => prev + 1);
-      }, 2000);
+    const type = () => {
+      const fullText = texts[currentTextIndex];
+      
+      if (!isDeleting) {
+        if (currentText.length < fullText.length) {
+          setCurrentText(fullText.substring(0, currentText.length + 1));
+          setTimeout(type, typeSpeed);
+        } else {
+          setTimeout(() => setIsDeleting(true), pauseDuration);
+        }
+      } else {
+        if (currentText.length > 0) {
+          setCurrentText(currentText.substring(0, currentText.length - 1));
+          setTimeout(type, deleteSpeed);
+        } else {
+          setIsDeleting(false);
+          setCurrentTextIndex((currentTextIndex + 1) % texts.length);
+        }
+      }
+    };
 
-      return () => clearTimeout(timeout);
-    } else {
-      // Reset to first text when all texts are done
-      const timeout = setTimeout(() => {
-        setDisplayText('');
-        setCurrentIndex(0);
-        setTextIndex(0);
-      }, 2000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, textIndex, texts]);
+    const timer = setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+    return () => clearTimeout(timer);
+  }, [currentText, currentTextIndex, isDeleting, texts]);
 
   return (
     <motion.div
@@ -50,7 +51,7 @@ export const TypewriterText = ({ texts, className = '', delay = 0 }: TypewriterT
       transition={{ duration: 0.5, delay }}
       className={className}
     >
-      {displayText}
+      {currentText}
       <motion.span
         animate={{ opacity: [1, 0, 1] }}
         transition={{ duration: 0.8, repeat: Infinity }}
