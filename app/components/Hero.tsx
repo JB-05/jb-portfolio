@@ -28,7 +28,7 @@ const socialLinks: SocialLinkProps[] = [
   },
   {
     name: 'Email',
-    href: 'mailto:work.joelbiju@gmail.com?subject=Hello%20Joel',
+    href: 'mailto:work.joelbiju@gmail.com',
     icon: 'email',
   },
 ];
