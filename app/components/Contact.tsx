@@ -4,8 +4,76 @@ import { motion } from 'framer-motion';
 import { Section } from './shared/Section';
 import { Container } from './shared/Container';
 import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { Toast } from './shared/Toast';
+import { useState, FormEvent } from 'react';
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 export const Contact = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState<'success' | 'error'>('success');
+  const [mailtoLink, setMailtoLink] = useState('');
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    
+    // Validate form
+    if (!formData.name || !formData.email || !formData.message) {
+      setToastMessage('Please fill in all fields');
+      setToastType('error');
+      setShowToast(true);
+      return;
+    }
+
+    if (!isValidEmail(formData.email)) {
+      setToastMessage('Please enter a valid email address');
+      setToastType('error');
+      setShowToast(true);
+      return;
+    }
+
+    // Create mailto link with form data
+    const subject = `Portfolio Contact from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    const link = `mailto:work.joelbiju@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Try to open email client
+    const mailWindow = window.open(link, '_blank');
+    
+    if (!mailWindow) {
+      // If popup blocked or failed, save the link for the backup button
+      setMailtoLink(link);
+      setToastMessage('Click the backup link below to open your email client');
+      setToastType('error');
+    } else {
+      // Reset form on success
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      });
+      setToastMessage('Opening your email client...');
+      setToastType('success');
+    }
+    
+    setShowToast(true);
+  };
+
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   return (
     <Section id="contact" className="py-16">
       <Container>
@@ -88,7 +156,7 @@ export const Contact = () => {
             className="bg-gray-800/50 rounded-xl p-6"
           >
             <h3 className="text-xl font-semibold text-white mb-6">Send a Message</h3>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                   Name
@@ -96,7 +164,8 @@ export const Contact = () => {
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your name"
                 />
@@ -108,7 +177,8 @@ export const Contact = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="your.email@example.com"
                 />
@@ -119,7 +189,8 @@ export const Contact = () => {
                 </label>
                 <textarea
                   id="message"
-                  name="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={4}
                   className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Your message"
@@ -127,14 +198,38 @@ export const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg transition-colors hover:bg-blue-600"
               >
                 Send Message
               </button>
+              
+              {mailtoLink && (
+                <a
+                  href={mailtoLink}
+                  className="block w-full px-6 py-3 bg-gray-600 text-white rounded-lg text-center transition-colors hover:bg-gray-700 mt-2"
+                  onClick={() => {
+                    setMailtoLink('');
+                    setFormData({
+                      name: '',
+                      email: '',
+                      message: '',
+                    });
+                  }}
+                >
+                  Click here to open email client
+                </a>
+              )}
             </form>
           </motion.div>
         </div>
       </Container>
+
+      <Toast
+        message={toastMessage}
+        type={toastType}
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </Section>
   );
 }; 
