@@ -113,7 +113,7 @@ export const Hero = () => {
   //const [imageError, setImageError] = useState(false);
 
   return (
-    <Section id="home" className="relative min-h-screen flex items-center">
+    <Section id="home" className="relative min-h-screen flex items-center mt-16 md:mt-0">
       <BubblyBackground />
       <FloatingElements />
       <Container>
