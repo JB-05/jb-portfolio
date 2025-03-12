@@ -36,7 +36,7 @@ const achievements: Achievement[] = [
     icon: FaAward
   },
   {
-    title: "7th Place - InApp Innovate Hackathon",
+    title: "Finalist - InApp Innovate Hackathon",
     description: "IEEE Kerala Young Professionals",
     date: "2025",
     category: "hackathon",
