@@ -23,25 +23,30 @@ export const Navigation = () => {
   });
 
   useEffect(() => {
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-          setActiveSection(entry.target.id);
+    const handleScroll = () => {
+      let currentSection = 'home';
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+      navItems.forEach(({ id }) => {
+        const element = document.getElementById(id);
+        if (element) {
+          const { top, bottom } = element.getBoundingClientRect();
+          const elementTop = top + window.scrollY;
+          const elementBottom = bottom + window.scrollY;
+
+          if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
+            currentSection = id;
+          }
         }
       });
+
+      setActiveSection(currentSection);
     };
 
-    const observer = new IntersectionObserver(observerCallback, {
-      threshold: 0.3,
-      rootMargin: '-80px 0px -80% 0px'
-    });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial position
 
-    navItems.forEach(item => {
-      const element = document.getElementById(item.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = useCallback((sectionId: string) => {

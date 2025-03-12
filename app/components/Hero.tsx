@@ -23,12 +23,12 @@ const socialLinks: SocialLinkProps[] = [
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/in/joel-biju-285527289',
+    href: 'https://www.linkedin.com/in/joel-biju-285527289',
     icon: 'linkedin',
   },
   {
     name: 'Email',
-    href: 'mailto:work.joelbiju@gmail.com',
+    href: 'mailto:work.joelbiju@gmail.com?subject=Hello%20Joel',
     icon: 'email',
   },
 ];
@@ -36,8 +36,9 @@ const socialLinks: SocialLinkProps[] = [
 const texts = [
   'Full Stack Developer',
   'Designer',
-  'Problem Solver',
   'Mobile App Developer',
+  'Problem Solver',
+  'Hackathon Champion'
 ];
 
 const scrollToSection = (sectionId: string) => {
@@ -162,13 +163,16 @@ export const Hero = () => {
               </Button>
             </motion.div>
             <motion.div 
-              className="flex gap-4 mt-8 justify-center md:justify-start"
+              className="flex gap-6 mt-8 justify-center md:justify-start items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
             >
               {socialLinks.map((link) => (
-                <SocialLink key={link.name} {...link} />
+                <SocialLink 
+                  key={link.name} 
+                  {...link}
+                />
               ))}
             </motion.div>
           </motion.div>

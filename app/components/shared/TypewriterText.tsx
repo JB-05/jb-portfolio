@@ -25,22 +25,30 @@ export const TypewriterText = ({ texts, className = '', delay = 0 }: TypewriterT
       if (!isDeleting) {
         if (currentText.length < fullText.length) {
           setCurrentText(fullText.substring(0, currentText.length + 1));
-          setTimeout(type, typeSpeed);
+          return typeSpeed;
         } else {
-          setTimeout(() => setIsDeleting(true), pauseDuration);
+          setIsDeleting(true);
+          return pauseDuration;
         }
       } else {
         if (currentText.length > 0) {
           setCurrentText(currentText.substring(0, currentText.length - 1));
-          setTimeout(type, deleteSpeed);
+          return deleteSpeed;
         } else {
           setIsDeleting(false);
           setCurrentTextIndex((currentTextIndex + 1) % texts.length);
+          return typeSpeed;
         }
       }
     };
 
-    const timer = setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+    const timer = setTimeout(() => {
+      const nextDelay = type();
+      if (nextDelay) {
+        timer;
+      }
+    }, isDeleting ? deleteSpeed : typeSpeed);
+
     return () => clearTimeout(timer);
   }, [currentText, currentTextIndex, isDeleting, texts]);
 
