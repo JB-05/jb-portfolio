@@ -35,8 +35,9 @@ const socialLinks: SocialLinkProps[] = [
 
 const texts = [
   'Full Stack Developer',
-  'UI/UX Designer',
+  'Designer',
   'Problem Solver',
+  'Mobile App Developer',
 ];
 
 const scrollToSection = (sectionId: string) => {
