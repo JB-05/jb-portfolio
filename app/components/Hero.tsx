@@ -18,17 +18,17 @@ type SocialLinkProps = {
 const socialLinks: SocialLinkProps[] = [
   {
     name: 'GitHub',
-    href: 'https://github.com/jb',
+    href: 'https://github.com/jb-05',
     icon: 'github',
   },
   {
     name: 'LinkedIn',
-    href: 'https://linkedin.com/in/jb',
+    href: 'https://linkedin.com/in/joel-biju-285527289',
     icon: 'linkedin',
   },
   {
     name: 'Email',
-    href: 'mailto:jb@gmail.com',
+    href: 'mailto:work.joelbiju@gmail.com',
     icon: 'email',
   },
 ];
@@ -137,7 +137,7 @@ export const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              I am a <TypewriterText texts={texts} />
+              I&apos;am a <TypewriterText texts={texts} />
             </motion.p>
             <motion.p 
               className="text-gray-400 text-lg mb-8 max-w-2xl"
