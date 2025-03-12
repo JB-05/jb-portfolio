@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Section } from './shared/Section';
 import { Container } from './shared/Container';
-import { FaMobileAlt, FaLeaf, FaRobot, FaChartLine, FaHeart, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaMobileAlt, FaLeaf, FaRobot, FaChartLine, FaHeart } from 'react-icons/fa';
 
 interface Project {
   title: string;

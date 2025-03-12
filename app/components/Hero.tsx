@@ -108,7 +108,7 @@ const FloatingElements = () => (
 );
 
 export const Hero = () => {
-  const [imageError, setImageError] = useState(false);
+  //const [imageError, setImageError] = useState(false);
 
   return (
     <Section id="home" className="relative min-h-screen flex items-center">

@@ -1,12 +1,11 @@
 'use client';
 
 import { type ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Experience } from './components/Experience';
 import { Projects } from './components/Projects';
-import { Contact } from './components/Contact';
 import { Navigation } from './components/Navigation';
 import { Achievements } from './components/Achievements';
 import { Posters } from './components/Posters';

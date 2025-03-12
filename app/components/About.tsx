@@ -83,7 +83,7 @@ export const About = () => {
               About <span className="text-blue-400">Me</span>
             </h2>
             <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
-              I'm a passionate Full-Stack and Mobile App Developer with a strong foundation in computer science and engineering.
+              I&apos;m a passionate Full-Stack and Mobile App Developer with a strong foundation in computer science and engineering.
               My journey in software development is driven by a commitment to creating innovative solutions and continuous learning.
               I believe in writing clean, maintainable code and building user-centric applications that solve real-world problems.
             </p>
@@ -191,7 +191,7 @@ export const About = () => {
             className="text-center"
           >
             <Button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-              Let's Work Together
+              Let&apos;s Work Together
             </Button>
           </motion.div>
         </div>
