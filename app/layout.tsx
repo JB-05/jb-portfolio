@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ThemeProvider } from './context/ThemeContext';
+import { ThemeToggle } from './components/shared/ThemeToggle';
+import { StarryBackground } from './components/shared/StarryBackground';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { Contact } from './components/Contact';
@@ -9,8 +12,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://your-domain.com'), // Replace with your actual domain
-  title: 'Joel Biju || JB',
-  description: 'Portfolio website showcasing my projects, skills, and achievements',
+  title: 'Joel Biju | Portfolio',
+  description: 'A modern portfolio website showcasing my work as a developer and designer.',
   keywords: ['portfolio', 'developer', 'designer', 'web development', 'software engineering'],
   authors: [{ name: 'Your Name' }],
   openGraph: {
@@ -69,19 +72,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="dark">
       <head>
         <link rel="icon" href="/favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${inter.className} bg-gray-950 text-white`}>
-        <Navigation />
-        <main>
-          {children}
-          <Contact />
-        </main>
-        <Footer />
+      <body className={`${inter.className} min-h-screen transition-colors duration-300
+        dark:bg-gray-900 dark:text-white
+        light:bg-gray-50 light:text-gray-900`}>
+        <ThemeProvider>
+          <StarryBackground />
+          <ThemeToggle />
+          <Navigation />
+          <main>
+            {children}
+            <Contact />
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

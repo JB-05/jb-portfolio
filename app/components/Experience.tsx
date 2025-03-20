@@ -8,7 +8,7 @@ import { FaGraduationCap, FaBriefcase, FaTrophy } from 'react-icons/fa';
 const experience = [
   {
     title: "Front-end Developer",
-    period: "2024 - Present",
+    period: "2024 - 2025",
     description: "Working as a front-end developer at Cybernix Yztha LLP, focusing on building modern web applications.",
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
     achievements: [
