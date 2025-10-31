@@ -3,9 +3,20 @@
 import { motion } from 'framer-motion';
 import { Section } from './shared/Section';
 import { Container } from './shared/Container';
-import { FaGraduationCap, FaBriefcase, FaTrophy } from 'react-icons/fa';
+import { FaBriefcase } from 'react-icons/fa';
 
 const experience = [
+  {
+    title: "Software Developer Intern - RealWeb Technologies",
+    period: "Mar 2025 - Sep 2025",
+    description: "Contributing to enterprise-level web solutions with a focus on backend integration, API management, and optimized UI development for better performance and scalability.",
+    skills: ["Next.js", "TypeScript", "Tailwind CSS"],
+    achievements: [
+      "Led a full UI refresh that improved usability scores across key workflows",
+      "Integrated authenticated data feeds to streamline frontend modules",
+      "Partnered with designers to ship polished components with Tailwind CSS"
+    ]
+  },
   {
     title: "Front-end Developer",
     period: "2024 - 2025",
@@ -23,36 +34,9 @@ const experience = [
     description: "Leading development of innovative solutions using modern technologies.",
     skills: ["React", "Node.js", "Flutter", "MongoDB"],
     achievements: [
-      "Developed and deployed multiple full-stack applications",
+      "Developed and deployed full-stack applications",
       "Created cross-platform mobile apps with Flutter",
       "Implemented responsive and user-friendly interfaces"
-    ]
-  }
-];
-
-const education = [
-  {
-    title: "B.Tech in Computer Science",
-    period: "2023 - 2027",
-    institution: "IHRD College of Engineering Kallooppara",
-    description: "Pursuing degree with focus on software development and computer science fundamentals.",
-    achievements: [
-      "Maintained high academic performance",
-      "Active in technical clubs and events",
-      "Completed multiple technical certifications",
-    ]
-  }
-];
-
-const achievements = [
-  {
-    title: "Hackathon Champion",
-    period: "2025",
-    description: "Won first place in national level hackathons for innovative solutions.",
-    details: [
-      "Developed AI-powered healthcare solution",
-      "Created IoT-based smart agricultural management system",
-      "Built nutrition tracking app for focused on malnourished childern"
     ]
   }
 ];
@@ -204,7 +188,7 @@ export const Experience = () => {
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Experience</span>
           </h2>
           <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
-            A journey through my professional experience, education, and notable achievements.
+            A journey through my professional experience.
           </p>
         </motion.div>
 
@@ -220,27 +204,6 @@ export const Experience = () => {
                 achievements={exp.achievements}
                 icon={FaBriefcase}
                 isLast={index === experience.length - 1}
-              />
-            ))}
-            {education.map((edu, index) => (
-              <TimelineItem
-                key={index}
-                title={edu.title}
-                period={edu.period}
-                description={edu.description}
-                icon={FaGraduationCap}
-                isLast={index === education.length - 1}
-              />
-            ))}
-            {achievements.map((achievement, index) => (
-              <TimelineItem
-                key={index}
-                title={achievement.title}
-                period={achievement.period}
-                description={achievement.description}
-                details={achievement.details}
-                icon={FaTrophy}
-                isLast={index === achievements.length - 1}
               />
             ))}
           </div>

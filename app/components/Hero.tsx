@@ -7,12 +7,11 @@ import { Button } from './shared/Button';
 import { SocialLink } from './shared/SocialLink';
 import { TypewriterText } from './shared/TypewriterText';
 import Image from 'next/image';
-import { useState } from 'react';
 
 type SocialLinkProps = {
   name: string;
   href: string;
-  icon: "github" | "linkedin" | "email";
+  icon: 'github' | 'linkedin' | 'email' | 'dev' | 'duolingo';
 };
 
 const socialLinks: SocialLinkProps[] = [
@@ -30,6 +29,16 @@ const socialLinks: SocialLinkProps[] = [
     name: 'Email',
     href: 'mailto:work.joelbiju@gmail.com',
     icon: 'email',
+  },
+  {
+    name: 'DEV Community',
+    href: 'https://dev.to/jb05',
+    icon: 'dev',
+  },
+  {
+    name: 'Duolingo',
+    href: 'https://www.duolingo.com/profile/JoelBiju05?via=share_profile_link',
+    icon: 'duolingo',
   },
 ];
 
@@ -110,8 +119,6 @@ const FloatingElements = () => (
 );
 
 export const Hero = () => {
-  //const [imageError, setImageError] = useState(false);
-
   return (
     <Section id="home" className="relative min-h-screen flex items-center mt-16 md:mt-0">
       <BubblyBackground />

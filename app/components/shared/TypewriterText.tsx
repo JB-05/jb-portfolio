@@ -15,39 +15,42 @@ export const TypewriterText = ({ texts, className = '', delay = 0 }: TypewriterT
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    if (!texts.length) {
+      return;
+    }
+
     const typeSpeed = 100;
     const deleteSpeed = 50;
     const pauseDuration = 2000;
 
-    const type = () => {
-      const fullText = texts[currentTextIndex];
-      
+    const fullText = texts[currentTextIndex % texts.length];
+    const isFull = currentText === fullText;
+    const isEmpty = currentText.length === 0;
+
+    let nextTickDelay = isDeleting ? deleteSpeed : typeSpeed;
+    if (!isDeleting && isFull) {
+      nextTickDelay = pauseDuration;
+    }
+    if (isDeleting && isEmpty) {
+      nextTickDelay = typeSpeed;
+    }
+
+    const timer = setTimeout(() => {
       if (!isDeleting) {
-        if (currentText.length < fullText.length) {
-          setCurrentText(fullText.substring(0, currentText.length + 1));
-          return typeSpeed;
+        if (!isFull) {
+          setCurrentText(fullText.slice(0, currentText.length + 1));
         } else {
           setIsDeleting(true);
-          return pauseDuration;
         }
       } else {
-        if (currentText.length > 0) {
-          setCurrentText(currentText.substring(0, currentText.length - 1));
-          return deleteSpeed;
+        if (!isEmpty) {
+          setCurrentText(fullText.slice(0, currentText.length - 1));
         } else {
           setIsDeleting(false);
           setCurrentTextIndex((currentTextIndex + 1) % texts.length);
-          return typeSpeed;
         }
       }
-    };
-
-    const timer = setTimeout(() => {
-      const nextDelay = type();
-      if (nextDelay) {
-        timer;
-      }
-    }, isDeleting ? deleteSpeed : typeSpeed);
+    }, nextTickDelay);
 
     return () => clearTimeout(timer);
   }, [currentText, currentTextIndex, isDeleting, texts]);
@@ -67,4 +70,4 @@ export const TypewriterText = ({ texts, className = '', delay = 0 }: TypewriterT
       />
     </motion.div>
   );
-}; 
+};

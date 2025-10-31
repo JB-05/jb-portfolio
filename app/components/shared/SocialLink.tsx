@@ -1,18 +1,20 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaDev } from 'react-icons/fa';
+import { SiDuolingo } from 'react-icons/si';
 
 interface SocialLinkProps {
   name: string;
   href: string;
-  icon: 'github' | 'linkedin' | 'email';
+  icon: 'github' | 'linkedin' | 'email' | 'dev' | 'duolingo';
 }
 
 const icons = {
   github: FaGithub,
   linkedin: FaLinkedin,
-  email: FaEnvelope
+  email: FaEnvelope,
+  dev: FaDev,
+  duolingo: SiDuolingo,
 };
 
 export const SocialLink = ({ name, href, icon }: SocialLinkProps) => {
