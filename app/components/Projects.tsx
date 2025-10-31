@@ -11,7 +11,10 @@ interface Project {
   period: string;
   features: string[];
   icon: typeof FaMobileAlt;
-  gradient: string;
+  iconBg: string;
+  borderColor: string;
+  bulletColor: string;
+  statusColor: string;
 }
 
 const projects: Project[] = [
@@ -28,7 +31,10 @@ const projects: Project[] = [
       "Multi-child health dashboard for parents and healthcare workers"
     ],
     icon: FaHeart,
-    gradient: "from-red-500 to-pink-500"
+    iconBg: "bg-gradient-to-br from-rose-500/25 to-amber-400/25 ring-1 ring-rose-400/40",
+    borderColor: "border-rose-500/20",
+    bulletColor: "bg-rose-400",
+    statusColor: "text-rose-300"
   },
   {
     title: "MediBharat",
@@ -42,7 +48,10 @@ const projects: Project[] = [
       "User-friendly interface"
     ],
     icon: FaMobileAlt,
-    gradient: "from-blue-500 to-purple-500"
+    iconBg: "bg-gradient-to-br from-blue-600/25 to-indigo-500/25 ring-1 ring-blue-400/40",
+    borderColor: "border-blue-500/20",
+    bulletColor: "bg-blue-400",
+    statusColor: "text-blue-300"
   },
   {
     title: "Smart Agricultural Monitoring System (SAMS)",
@@ -56,7 +65,10 @@ const projects: Project[] = [
       "Data visualization dashboard"
     ],
     icon: FaLeaf,
-    gradient: "from-green-500 to-emerald-500"
+    iconBg: "bg-gradient-to-br from-emerald-500/25 to-teal-400/25 ring-1 ring-emerald-400/40",
+    borderColor: "border-emerald-500/20",
+    bulletColor: "bg-emerald-400",
+    statusColor: "text-emerald-300"
   }
 ];
 
@@ -75,7 +87,7 @@ export const Projects = () => {
             Featured <span className="text-blue-400">Projects</span>
           </h2>
           <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
-            A showcase of my recent projects demonstrating my expertise in mobile app development and IoT solutions.
+            A showcase of my recent projects.
           </p>
         </motion.div>
 
@@ -89,12 +101,12 @@ export const Projects = () => {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="relative group"
             >
-              <div className={`bg-gradient-to-r ${project.gradient} rounded-xl p-6 transform transition-transform duration-300 group-hover:scale-[1.02]`}>
+              <div className={`rounded-2xl p-6 transform transition-transform duration-300 group-hover:scale-[1.01] bg-[#111827] border ${project.borderColor} shadow-xl shadow-black/40`}> 
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Project Icon */}
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center">
-                      <project.icon className="text-2xl text-white" />
+                    <div className={`w-16 h-16 rounded-xl flex items-center justify-center text-white ${project.iconBg}`}>
+                      <project.icon className="text-2xl" />
                     </div>
                   </div>
 
@@ -102,10 +114,10 @@ export const Projects = () => {
                   <div className="flex-grow">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                       <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                      <span className="text-sm text-gray-200">{project.period}</span>
+                      <span className="text-sm text-gray-300">{project.period}</span>
                     </div>
                     
-                    <p className="text-gray-200 mb-4">{project.description}</p>
+                    <p className="text-gray-300 mb-4">{project.description}</p>
 
                     {/* Features */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -116,8 +128,8 @@ export const Projects = () => {
                         </h4>
                         <ul className="space-y-2">
                           {project.features.map((feature, i) => (
-                            <li key={i} className="text-gray-200 text-sm flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 rounded-full bg-blue-300"></span>
+                             <li key={i} className="text-gray-300 text-sm flex items-center gap-2">
+                               <span className={`w-1.5 h-1.5 rounded-full ${project.bulletColor}`}></span>
                               {feature}
                             </li>
                           ))}
@@ -126,7 +138,7 @@ export const Projects = () => {
                     </div>
 
                     {/* Project Status */}
-                    <div className="flex items-center gap-2 text-sm text-blue-300">
+                     <div className={`flex items-center gap-2 text-sm ${project.statusColor}`}>
                       <FaChartLine />
                       <span>In Development</span>
                     </div>

@@ -7,35 +7,39 @@ import { StarryBackground } from './components/shared/StarryBackground';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { Contact } from './components/Contact';
+import { Analytics } from '@vercel/analytics/react';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://example.com';
+const authorName = 'Joel Biju';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://your-domain.com'), // Replace with your actual domain
+  metadataBase: new URL(siteUrl),
   title: 'Joel Biju | Portfolio',
   description: 'A modern portfolio website showcasing my work as a developer and designer.',
   keywords: ['portfolio', 'developer', 'designer', 'web development', 'software engineering'],
-  authors: [{ name: 'Your Name' }],
+  authors: [{ name: authorName, url: siteUrl }],
   openGraph: {
-    title: 'Your Name - Portfolio',
+    title: 'Joel Biju - Portfolio',
     description: 'Personal portfolio showcasing my work, experience, and achievements.',
     type: 'website',
     locale: 'en_US',
-    siteName: 'Your Portfolio',
+    siteName: 'Joel Biju Portfolio',
     images: [
       {
-        url: '/og-image.jpg', // Add your Open Graph image to the public folder
+        url: `${siteUrl}/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Your Name - Portfolio',
+        alt: 'Joel Biju - Portfolio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Name - Portfolio',
+    title: 'Joel Biju - Portfolio',
     description: 'Personal portfolio showcasing my work, experience, and achievements.',
-    images: ['/twitter-image.jpg'], // Add your Twitter image to the public folder
+    images: [`${siteUrl}/og-image.jpg`],
   },
   robots: {
     index: true,
@@ -90,6 +94,7 @@ export default function RootLayout({
             <Contact />
           </main>
           <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

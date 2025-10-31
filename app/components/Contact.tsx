@@ -3,9 +3,12 @@
 import { motion } from 'framer-motion';
 import { Section } from './shared/Section';
 import { Container } from './shared/Container';
-import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaDev } from 'react-icons/fa';
+import { SiDuolingo } from 'react-icons/si';
 import { Toast } from './shared/Toast';
+import { Button } from './shared/Button';
 import { useState, FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 
 interface FormData {
   name: string;
@@ -23,11 +26,15 @@ export const Contact = () => {
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState<'success' | 'error'>('success');
   const [mailtoLink, setMailtoLink] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Validate form
+
+    if (isSubmitting) {
+      return;
+    }
+
     if (!formData.name || !formData.email || !formData.message) {
       setToastMessage('Please fill in all fields');
       setToastType('error');
@@ -42,30 +49,53 @@ export const Contact = () => {
       return;
     }
 
-    // Create mailto link with form data
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    const templateParams = {
+      from_name: formData.name,
+      reply_to: formData.email,
+      message: formData.message,
+    };
+
+    if (serviceId && templateId && publicKey) {
+      try {
+        setIsSubmitting(true);
+        await emailjs.send(serviceId, templateId, templateParams, publicKey);
+        setFormData({ name: '', email: '', message: '' });
+        setMailtoLink('');
+        setToastMessage('Thanks! Your message has been sent successfully.');
+        setToastType('success');
+      } catch (error) {
+        console.error('EmailJS error:', error);
+        setToastMessage('Something went wrong while sending your message. Please try again.');
+        setToastType('error');
+      } finally {
+        setIsSubmitting(false);
+        setShowToast(true);
+      }
+
+      return;
+    }
+
     const subject = `Portfolio Contact from ${formData.name}`;
     const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
     const link = `mailto:work.joelbiju@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Try to open email client
+
     const mailWindow = window.open(link, '_blank');
-    
+
     if (!mailWindow) {
-      // If popup blocked or failed, save the link for the backup button
       setMailtoLink(link);
       setToastMessage('Click the backup link below to open your email client');
       setToastType('error');
     } else {
-      // Reset form on success
-      setFormData({
-        name: '',
-        email: '',
-        message: '',
-      });
+      setFormData({ name: '', email: '', message: '' });
+      setMailtoLink('');
       setToastMessage('Opening your email client...');
       setToastType('success');
     }
-    
+
     setShowToast(true);
   };
 
@@ -143,6 +173,22 @@ export const Contact = () => {
                 >
                   <FaLinkedin className="text-2xl" />
                 </a>
+                <a
+                  href="https://dev.to/jb05"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  <FaDev className="text-2xl" />
+                </a>
+                <a
+                  href="https://www.duolingo.com/profile/JoelBiju05?via=share_profile_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  <SiDuolingo className="text-2xl" />
+                </a>
               </div>
             </div>
           </motion.div>
@@ -196,12 +242,14 @@ export const Contact = () => {
                   placeholder="Your message"
                 ></textarea>
               </div>
-              <button
+              <Button
                 type="submit"
-                className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg transition-colors hover:bg-blue-600"
+                className="w-full justify-center"
+                loading={isSubmitting}
+                disabled={isSubmitting}
               >
-                Send Message
-              </button>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
               
               {mailtoLink && (
                 <a

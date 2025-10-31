@@ -102,7 +102,7 @@ export const Posters = () => {
 
   return (
     <>
-      <section className="py-20 px-4 bg-gray-900">
+      <section id="design" className="py-20 px-4 bg-gray-900">
         <h2 className="text-4xl font-bold mb-12 text-center">
           <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My </span>
           <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Posters</span>
