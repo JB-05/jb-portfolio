@@ -9,7 +9,7 @@ import { Posters } from './components/Posters';
 
 export default function Home() {
   return (
-    <main className="bg-gray-900 text-white">
+    <main className="pt-24">
       <Hero />
       <About />
       <Experience />

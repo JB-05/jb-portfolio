@@ -32,16 +32,18 @@ export const Toast = ({ message, type, isVisible, onClose }: ToastProps) => {
           className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50"
         >
           <div
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg shadow-lg ${
-              type === 'success' ? 'bg-green-500' : 'bg-red-500'
-            }`}
+            className={`
+              neu-surface-soft flex items-center gap-3 px-6 py-3 shadow-neu-soft
+              border-l-4
+              ${type === 'success' ? 'border-accent-mint' : 'border-danger-soft'}
+            `}
           >
             {type === 'success' ? (
-              <FaCheckCircle className="text-white text-xl" />
+              <FaCheckCircle className="text-accent-mint text-xl" />
             ) : (
-              <FaExclamationCircle className="text-white text-xl" />
+              <FaExclamationCircle className="text-danger-soft text-xl" />
             )}
-            <p className="text-white">{message}</p>
+            <p className="text-ink-fg-soft">{message}</p>
           </div>
         </motion.div>
       )}

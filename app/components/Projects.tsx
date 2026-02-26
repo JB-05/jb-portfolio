@@ -74,7 +74,7 @@ const projects: Project[] = [
 
 export const Projects = () => {
   return (
-    <Section id="projects" className="py-16">
+    <Section id="projects" className="py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -83,10 +83,10 @@ export const Projects = () => {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Featured <span className="text-blue-400">Projects</span>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink-fg">
+            Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-ink-fg-soft text-base md:text-lg max-w-2xl mx-auto">
             A showcase of my recent projects.
           </p>
         </motion.div>
@@ -101,11 +101,17 @@ export const Projects = () => {
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className="relative group"
             >
-              <div className={`rounded-2xl p-6 transform transition-transform duration-300 group-hover:scale-[1.01] bg-[#111827] border ${project.borderColor} shadow-xl shadow-black/40`}> 
+              <div
+                className={`
+                  glass-neu-card p-6
+                  transform transition-transform duration-300 group-hover:scale-[1.01]
+                  border ${project.borderColor}
+                `}
+              > 
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Project Icon */}
                   <div className="flex-shrink-0">
-                    <div className={`w-16 h-16 rounded-xl flex items-center justify-center text-white ${project.iconBg}`}>
+                    <div className={`w-16 h-16 rounded-card-xl flex items-center justify-center text-ink-fg ${project.iconBg}`}>
                       <project.icon className="text-2xl" />
                     </div>
                   </div>
@@ -113,22 +119,22 @@ export const Projects = () => {
                   {/* Project Content */}
                   <div className="flex-grow">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                      <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                      <span className="text-sm text-gray-300">{project.period}</span>
+                      <h3 className="text-xl font-semibold text-ink-fg">{project.title}</h3>
+                      <span className="text-sm text-ink-fg-soft">{project.period}</span>
                     </div>
                     
-                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <p className="text-ink-fg-soft mb-4">{project.description}</p>
 
                     {/* Features */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div>
-                        <h4 className="text-white font-semibold mb-2 flex items-center gap-2">
-                          <FaRobot className="text-blue-300" />
+                        <h4 className="text-ink-fg font-semibold mb-2 flex items-center gap-2">
+                          <FaRobot className="text-accent-mint" />
                           Key Features
                         </h4>
                         <ul className="space-y-2">
                           {project.features.map((feature, i) => (
-                             <li key={i} className="text-gray-300 text-sm flex items-center gap-2">
+                             <li key={i} className="text-ink-fg-soft text-sm flex items-center gap-2">
                                <span className={`w-1.5 h-1.5 rounded-full ${project.bulletColor}`}></span>
                               {feature}
                             </li>

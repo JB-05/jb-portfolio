@@ -69,22 +69,22 @@ export const Navigation = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800"
+      className="fixed top-0 left-0 right-0 z-50 glass-nav"
     >
       {/* Progress bar */}
       <motion.div
-        className="absolute top-0 left-0 right-0 h-1 bg-blue-500 origin-left"
+        className="absolute top-0 left-0 right-0 h-1 bg-accent-apricot origin-left"
         style={{ scaleX }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="mt-2 mb-3 flex items-center justify-between h-14 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl px-4 shadow-neu-soft">
           {/* Logo or Name */}
             <motion.button
               type="button"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex-shrink-0 text-xl font-bold text-white"
+              className="flex-shrink-0 text-xl font-semibold tracking-tight text-ink-fg"
               onClick={() => scrollToSection('home')}
               aria-label="Scroll to top"
             >
@@ -92,32 +92,40 @@ export const Navigation = () => {
             </motion.button>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`
-                  relative px-3 py-2 text-sm font-medium rounded-md
-                  transition-colors duration-200
-                  ${activeSection === item.id
-                    ? 'text-blue-400'
-                    : 'text-gray-400 hover:text-white'
-                  }
-                `}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.label}
-                {activeSection === item.id && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500"
-                    layoutId="activeSection"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
-              </motion.button>
-            ))}
+          <div className="hidden md:flex items-center space-x-6">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              const isContact = item.id === 'contact';
+
+              const baseClasses = 'relative text-sm font-medium rounded-full transition-all duration-200';
+
+              const contactClasses = isContact
+                ? isActive
+                  ? 'px-5 py-2 bg-gradient-to-r from-accent-apricot to-accent-mint text-ink-900 shadow-neu-soft hover:shadow-neu-glow-apricot'
+                  : 'px-5 py-2 bg-gradient-to-r from-accent-apricot/90 to-accent-mint/90 text-ink-900 shadow-neu-soft hover:shadow-neu-glow-apricot'
+                : isActive
+                  ? 'px-3 py-1.5 bg-ink-700 text-ink-fg shadow-neu-soft'
+                  : 'px-3 py-1.5 text-ink-fg-muted hover:text-ink-fg-soft hover:bg-ink-800/70';
+
+              return (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`${baseClasses} ${contactClasses}`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                  {!isContact && isActive && (
+                    <motion.div
+                      className="absolute inset-0 rounded-full ring-1 ring-accent-mint/50"
+                      layoutId="activeSection"
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </motion.button>
+              );
+            })}
           </div>
 
           {/* Mobile menu button */}
@@ -125,7 +133,7 @@ export const Navigation = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="text-gray-400 hover:text-white"
+              className="text-ink-fg-muted hover:text-ink-fg"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -156,30 +164,52 @@ export const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile full-screen menu */}
       <motion.div
         initial={false}
         animate={{
           opacity: isMobileMenuOpen ? 1 : 0,
-          height: isMobileMenuOpen ? 'auto' : 0,
+          pointerEvents: isMobileMenuOpen ? 'auto' : 'none',
         }}
         transition={{ duration: 0.2 }}
-        className="md:hidden bg-gray-900/95 backdrop-blur-md overflow-hidden"
+        className="md:hidden fixed inset-0 z-40 bg-ink-900/95 backdrop-blur-2xl"
       >
-        <div className="px-2 pt-2 pb-3 space-y-1">
+        {/* Close icon */}
+        <button
+          type="button"
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-label="Close menu"
+          className="absolute top-4 right-4 p-2 rounded-full bg-ink-800/80 text-ink-fg-soft hover:text-ink-fg hover:bg-ink-700 transition-colors"
+        >
+          <svg
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <div className="flex h-full flex-col items-center justify-center space-y-8">
           {navItems.map((item) => (
             <motion.button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
+              whileHover={{ scale: 1.08, y: -2 }}
+              whileTap={{ scale: 0.96 }}
               className={`
-                block w-full text-left px-3 py-2 rounded-md text-base font-medium
-                transition-colors duration-200
-                ${activeSection === item.id
-                  ? 'bg-gray-800 text-blue-400'
-                  : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                text-center font-medium tracking-wide
+                ${item.id === 'contact'
+                  ? 'text-lg px-6 py-2 rounded-full bg-gradient-to-r from-accent-apricot to-accent-mint text-ink-900 shadow-neu-soft'
+                  : 'text-2xl text-ink-fg-soft'
                 }
               `}
-              whileHover={{ x: 5 }}
             >
               {item.label}
             </motion.button>

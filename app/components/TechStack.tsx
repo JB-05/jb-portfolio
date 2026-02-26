@@ -10,9 +10,9 @@ interface TechCardProps {
 const TechCard = ({ name }: TechCardProps) => (
   <motion.div
     whileHover={{ scale: 1.1 }}
-    className="p-4 rounded-lg bg-gray-800 text-center"
+    className="p-4 rounded-card-xl neu-surface-soft text-center"
   >
-    {name}
+    <span className="text-ink-fg-soft text-sm font-medium">{name}</span>
   </motion.div>
 );
 
@@ -30,7 +30,9 @@ export const TechStack = () => {
 
   return (
     <section className="py-20 px-4">
-      <h2 className="text-3xl font-bold mb-12 text-center">Tech Stack</h2>
+      <h2 className="font-display text-3xl font-semibold mb-12 text-center text-ink-fg">
+        Tech <span className="gradient-text">Stack</span>
+      </h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
         {technologies.map((tech) => (
           <TechCard key={tech} name={tech} />

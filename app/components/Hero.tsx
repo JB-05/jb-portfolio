@@ -65,26 +65,48 @@ const scrollToSection = (sectionId: string) => {
 };
 
 const BubblyBackground = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    {[...Array(5)].map((_, i) => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {[...Array(4)].map((_, i) => (
       <motion.div
         key={i}
-        className="absolute w-64 h-64 rounded-full bg-blue-500/10"
+        className="absolute w-72 h-72 rounded-full bg-accent-apricot/12 blur-3xl"
         initial={{
-          x: Math.random() * 100 - 50,
-          y: Math.random() * 100 - 50,
-          scale: 0,
+          x: Math.random() * 60 - 30,
+          y: Math.random() * 60 - 30,
+          scale: 0.8,
         }}
         animate={{
-          x: Math.random() * 100 - 50,
-          y: Math.random() * 100 - 50,
-          scale: [0, 1, 0],
+          x: Math.random() * 60 - 30,
+          y: Math.random() * 60 - 30,
+          scale: [0.8, 1.05, 0.8],
         }}
         transition={{
-          duration: 20,
+          duration: 24,
           repeat: Infinity,
-          delay: i * 2,
-          ease: "easeInOut"
+          delay: i * 3,
+          ease: 'easeInOut',
+        }}
+      />
+    ))}
+    {[...Array(3)].map((_, i) => (
+      <motion.div
+        key={`mint-${i}`}
+        className="absolute w-64 h-64 rounded-full bg-accent-mint/10 blur-3xl"
+        initial={{
+          x: Math.random() * 60 - 30,
+          y: Math.random() * 60 - 30,
+          scale: 0.8,
+        }}
+        animate={{
+          x: Math.random() * 60 - 30,
+          y: Math.random() * 60 - 30,
+          scale: [0.8, 1.05, 0.8],
+        }}
+        transition={{
+          duration: 26,
+          repeat: Infinity,
+          delay: i * 4,
+          ease: 'easeInOut',
         }}
       />
     ))}
@@ -92,11 +114,11 @@ const BubblyBackground = () => (
 );
 
 const FloatingElements = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    {[...Array(3)].map((_, i) => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {[...Array(6)].map((_, i) => (
       <motion.div
         key={i}
-        className="absolute w-2 h-2 bg-blue-400 rounded-full"
+        className="absolute w-1.5 h-1.5 rounded-full bg-accent-amber/70"
         initial={{
           x: Math.random() * 100 - 50,
           y: Math.random() * 100 - 50,
@@ -108,10 +130,10 @@ const FloatingElements = () => (
           opacity: [0, 1, 0],
         }}
         transition={{
-          duration: 15,
+          duration: 18,
           repeat: Infinity,
-          delay: i * 3,
-          ease: "easeInOut"
+          delay: i * 2.5,
+          ease: 'easeInOut',
         }}
       />
     ))}
@@ -124,16 +146,16 @@ export const Hero = () => {
       <BubblyBackground />
       <FloatingElements />
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="neu-surface-soft grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 py-10 md:px-10 md:py-12 relative overflow-hidden">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center md:text-left"
+            className="relative z-10 text-center md:text-left"
           >
             <motion.h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-ink-fg mb-4 tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -141,7 +163,7 @@ export const Hero = () => {
               Hi, I&apos;m Joel Biju
             </motion.h1>
             <motion.p 
-              className="text-xl md:text-2xl text-gray-300 mb-6"
+              className="text-xl md:text-2xl text-ink-fg-soft mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -149,7 +171,7 @@ export const Hero = () => {
               I&apos;am a <TypewriterText texts={texts} />
             </motion.p>
             <motion.p 
-              className="text-gray-400 text-lg mb-8 max-w-2xl"
+              className="text-ink-fg-muted text-lg mb-8 max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -189,7 +211,7 @@ export const Hero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
+            className="relative z-10"
           >
             <div className="relative w-64 h-64 mx-auto">
               <motion.div
@@ -202,9 +224,9 @@ export const Hero = () => {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl opacity-20"
+                className="absolute inset-0 bg-gradient-to-r from-accent-apricot to-accent-mint rounded-full blur-3xl opacity-30"
               />
-              <div className="relative rounded-full overflow-hidden border-4 border-gray-800 shadow-2xl">
+              <div className="relative rounded-full overflow-hidden border-[3px] border-white/8 shadow-neu-soft bg-ink-800">
                 <Image
                   src="/images/profile.jpg"
                   alt="Joel Biju"
