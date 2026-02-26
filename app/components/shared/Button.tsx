@@ -15,9 +15,12 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary: 'bg-blue-500 hover:bg-blue-600 text-white focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900',
-  outline: 'border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900',
-  ghost: 'text-gray-400 hover:text-white hover:bg-gray-800 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900',
+  primary:
+    'bg-gradient-to-r from-accent-apricot to-accent-amber text-ink-900 shadow-neu-soft hover:shadow-neu-glow-apricot focus:ring-accent-mint focus:ring-offset-ink-900',
+  outline:
+    'border border-accent-mint text-accent-mint bg-transparent hover:bg-accent-mint/5 shadow-neu-soft focus:ring-accent-mint focus:ring-offset-ink-900',
+  ghost:
+    'text-ink-fg-soft hover:text-ink-fg bg-transparent hover:bg-ink-800/60 focus:ring-accent-mint/60 focus:ring-offset-ink-900',
 };
 
 const sizes = {
@@ -43,7 +46,7 @@ export const Button = ({
       disabled={disabled || loading}
       className={`
         relative inline-flex items-center justify-center
-        rounded-lg font-medium transition-colors
+        rounded-pill font-medium transition-colors
         focus:outline-none focus:ring-2
         disabled:opacity-50 disabled:cursor-not-allowed
         ${variants[variant]}

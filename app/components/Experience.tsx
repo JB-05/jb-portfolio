@@ -66,7 +66,7 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
         whileInView={{ height: '100%' }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="absolute left-4 top-8 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-500 opacity-50"
+        className="absolute left-4 top-8 bottom-0 w-0.5 bg-gradient-to-b from-accent-apricot to-accent-mint opacity-60"
       />
     )}
     <motion.div 
@@ -74,7 +74,7 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
       whileInView={{ scale: 1, rotate: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
-      className="absolute left-0 top-0 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-shadow duration-300"
+      className="absolute left-0 top-0 w-8 h-8 rounded-full bg-gradient-to-br from-accent-apricot to-accent-mint flex items-center justify-center shadow-neu-soft group-hover:shadow-neu-glow-apricot transition-shadow duration-300"
     >
       <Icon className="text-white text-sm" />
     </motion.div>
@@ -84,13 +84,13 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       whileHover={{ y: -2 }}
-      className="bg-gray-900/40 rounded-xl p-6 backdrop-blur-xl border border-gray-700/30 group-hover:border-blue-500/30 transition-all duration-300 shadow-xl shadow-black/10"
+      className="glass-neu-card p-6 group-hover:shadow-neu-glow-mint transition-all duration-300"
     >
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-        <h3 className="text-xl font-semibold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">{title}</h3>
-        <p className="text-blue-400 font-medium text-sm md:text-base">{period}</p>
+        <h3 className="text-xl font-semibold text-ink-fg">{title}</h3>
+        <p className="text-accent-mint font-medium text-sm md:text-base">{period}</p>
       </div>
-      <p className="text-gray-300/90 mb-6">{description}</p>
+      <p className="text-ink-fg-soft mb-6">{description}</p>
       {skills && (
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
@@ -99,7 +99,7 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-6"
         >
-          <h4 className="text-white/80 font-medium mb-3 text-sm uppercase tracking-wider">Skills</h4>
+          <h4 className="text-ink-fg-soft font-medium mb-3 text-sm uppercase tracking-[0.18em]">Skills</h4>
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
               <motion.span
@@ -109,7 +109,7 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
                 whileHover={{ scale: 1.05, y: -1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.2 }}
-                className="px-4 py-1.5 bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-400 rounded-full text-sm border border-blue-500/20 hover:border-blue-400/40 hover:bg-blue-500/20 transition-all duration-300"
+                className="px-4 py-1.5 rounded-pill text-sm bg-ink-800/80 text-accent-mint border border-accent-mint/40 hover:border-accent-mint/70 hover:bg-accent-mint/10 transition-all duration-300"
               >
                 {skill}
               </motion.span>
@@ -125,7 +125,7 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mb-6"
         >
-          <h4 className="text-white/80 font-medium mb-3 text-sm uppercase tracking-wider">Achievements</h4>
+          <h4 className="text-ink-fg-soft font-medium mb-3 text-sm uppercase tracking-[0.18em]">Achievements</h4>
           <ul className="space-y-2.5">
             {achievements.map((achievement, index) => (
               <motion.li 
@@ -136,8 +136,8 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
                 transition={{ duration: 0.3, delay: 0.1 * index }}
                 className="flex items-start group/item"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 mr-3 group-hover/item:bg-blue-400 transition-colors duration-300" />
-                <span className="text-gray-300/90 group-hover/item:text-blue-400 transition-colors duration-300">{achievement}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-apricot mt-2 mr-3 group-hover/item:bg-accent-mint transition-colors duration-300" />
+                <span className="text-ink-fg-soft group-hover/item:text-accent-mint transition-colors duration-300">{achievement}</span>
               </motion.li>
             ))}
           </ul>
@@ -150,7 +150,7 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <h4 className="text-white/80 font-medium mb-3 text-sm uppercase tracking-wider">Details</h4>
+          <h4 className="text-ink-fg-soft font-medium mb-3 text-sm uppercase tracking-[0.18em]">Details</h4>
           <ul className="space-y-2.5">
             {details.map((detail, index) => (
               <motion.li 
@@ -161,8 +161,8 @@ const TimelineItem = ({ title, period, description, skills, achievements, detail
                 transition={{ duration: 0.3, delay: 0.1 * index }}
                 className="flex items-start group/item"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 mr-3 group-hover/item:bg-purple-400 transition-colors duration-300" />
-                <span className="text-gray-300/90 group-hover/item:text-purple-400 transition-colors duration-300">{detail}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-mint mt-2 mr-3 group-hover/item:bg-accent-apricot transition-colors duration-300" />
+                <span className="text-ink-fg-soft group-hover/item:text-accent-apricot transition-colors duration-300">{detail}</span>
               </motion.li>
             ))}
           </ul>
@@ -183,11 +183,11 @@ export const Experience = () => {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold">
-            <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">My </span>
-            <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Experience</span>
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-ink-fg">
+            <span className="text-ink-fg-soft">My </span>
+            <span className="gradient-text">Experience</span>
           </h2>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
+          <p className="text-ink-fg-muted text-lg md:text-xl max-w-2xl mx-auto font-light">
             A journey through my professional experience.
           </p>
         </motion.div>

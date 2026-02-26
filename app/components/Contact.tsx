@@ -105,7 +105,7 @@ export const Contact = () => {
   };
 
   return (
-    <Section id="contact" className="py-16">
+    <Section id="contact" className="py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -114,10 +114,10 @@ export const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4 mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Get in <span className="text-blue-400">Touch</span>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink-fg">
+            Get in <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-ink-fg-soft text-base md:text-lg max-w-2xl mx-auto">
             Feel free to reach out for collaborations, questions, or just a friendly chat.
           </p>
         </motion.div>
@@ -129,39 +129,39 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-800/50 rounded-xl p-6"
+            className="neu-surface-soft p-6"
           >
-            <h3 className="text-xl font-semibold text-white mb-6">Contact Information</h3>
+            <h3 className="text-xl font-semibold text-ink-fg mb-6">Contact Information</h3>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <FaEnvelope className="text-blue-400 text-xl mt-1" />
+                <FaEnvelope className="text-accent-apricot text-xl mt-1" />
                 <div>
-                  <h4 className="text-white font-medium">Email</h4>
+                  <h4 className="text-ink-fg font-medium">Email</h4>
                   <a
                     href="mailto:work.joelbiju@gmail.com"
-                    className="text-gray-300 hover:text-blue-400 transition-colors"
+                    className="text-ink-fg-soft hover:text-accent-apricot transition-colors"
                   >
                     work.joelbiju@gmail.com
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <FaMapMarkerAlt className="text-blue-400 text-xl mt-1" />
+                <FaMapMarkerAlt className="text-accent-apricot text-xl mt-1" />
                 <div>
-                  <h4 className="text-white font-medium">Location</h4>
-                  <p className="text-gray-300">Kerala, India</p>
+                  <h4 className="text-ink-fg font-medium">Location</h4>
+                  <p className="text-ink-fg-soft">Kerala, India</p>
                 </div>
               </div>
             </div>
 
             <div className="mt-8">
-              <h4 className="text-white font-medium mb-4">Connect With Me</h4>
+              <h4 className="text-ink-fg font-medium mb-4">Connect With Me</h4>
               <div className="flex gap-4">
                 <a
                   href="https://github.com/jb-05"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  className="text-ink-fg-soft hover:text-accent-apricot transition-colors"
                 >
                   <FaGithub className="text-2xl" />
                 </a>
@@ -169,7 +169,7 @@ export const Contact = () => {
                   href="https://www.linkedin.com/in/joel-biju-285527289"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  className="text-ink-fg-soft hover:text-accent-apricot transition-colors"
                 >
                   <FaLinkedin className="text-2xl" />
                 </a>
@@ -177,7 +177,7 @@ export const Contact = () => {
                   href="https://dev.to/jb05"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  className="text-ink-fg-soft hover:text-accent-apricot transition-colors"
                 >
                   <FaDev className="text-2xl" />
                 </a>
@@ -185,7 +185,7 @@ export const Contact = () => {
                   href="https://www.duolingo.com/profile/JoelBiju05?via=share_profile_link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  className="text-ink-fg-soft hover:text-accent-apricot transition-colors"
                 >
                   <SiDuolingo className="text-2xl" />
                 </a>
@@ -199,12 +199,12 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gray-800/50 rounded-xl p-6"
+            className="neu-surface-soft p-6"
           >
-            <h3 className="text-xl font-semibold text-white mb-6">Send a Message</h3>
+            <h3 className="text-xl font-semibold text-ink-fg mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="name" className="block text-sm font-medium text-ink-fg-soft mb-1">
                   Name
                 </label>
                 <input
@@ -212,12 +212,12 @@ export const Contact = () => {
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 text-sm text-ink-fg-soft placeholder:text-ink-fg-muted neu-inset focus:outline-none focus:ring-2 focus:ring-accent-mint"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-ink-fg-soft mb-1">
                   Email
                 </label>
                 <input
@@ -225,12 +225,12 @@ export const Contact = () => {
                   id="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 text-sm text-ink-fg-soft placeholder:text-ink-fg-muted neu-inset focus:outline-none focus:ring-2 focus:ring-accent-mint"
                   placeholder="your.email@example.com"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                <label htmlFor="message" className="block text-sm font-medium text-ink-fg-soft mb-1">
                   Message
                 </label>
                 <textarea
@@ -238,7 +238,7 @@ export const Contact = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={4}
-                  className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 text-sm text-ink-fg-soft placeholder:text-ink-fg-muted neu-inset focus:outline-none focus:ring-2 focus:ring-accent-mint resize-none"
                   placeholder="Your message"
                 ></textarea>
               </div>
@@ -254,7 +254,7 @@ export const Contact = () => {
               {mailtoLink && (
                 <a
                   href={mailtoLink}
-                  className="block w-full px-6 py-3 bg-gray-600 text-white rounded-lg text-center transition-colors hover:bg-gray-700 mt-2"
+                  className="block w-full px-6 py-3 mt-2 text-center text-ink-fg-soft rounded-pill bg-ink-800/80 hover:bg-ink-700 transition-colors"
                   onClick={() => {
                     setMailtoLink('');
                     setFormData({

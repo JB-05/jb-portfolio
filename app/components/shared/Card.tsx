@@ -15,11 +15,10 @@ export const Card = ({ children, className = '', onClick, hoverable = true }: Ca
     <motion.div
       onClick={onClick}
       className={`
-        relative p-6 rounded-xl
-        bg-gray-800/50 backdrop-blur-sm
-        border border-gray-700/50
-        transition-colors duration-200
-        ${hoverable ? 'hover:bg-gray-800 hover:border-gray-600' : ''}
+        relative group p-6
+        neu-surface-soft
+        transition-transform duration-300
+        ${hoverable ? 'hover:shadow-neu-glow-apricot' : ''}
         ${onClick ? 'cursor-pointer' : ''}
         ${className}
       `}
@@ -27,7 +26,7 @@ export const Card = ({ children, className = '', onClick, hoverable = true }: Ca
       whileTap={onClick ? { scale: 0.98 } : undefined}
     >
       <motion.div
-        className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"
+        className="pointer-events-none absolute inset-0 rounded-card-xl bg-gradient-to-r from-accent-apricot/8 via-transparent to-accent-mint/10 opacity-0 group-hover:opacity-100 transition-opacity"
         initial={false}
         animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 0.3 }}

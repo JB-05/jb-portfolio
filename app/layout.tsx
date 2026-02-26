@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './context/ThemeContext';
-import { ThemeToggle } from './components/shared/ThemeToggle';
 import { StarryBackground } from './components/shared/StarryBackground';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
@@ -12,7 +11,17 @@ import { Analytics } from '@vercel/analytics/react';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://example.com';
 const authorName = 'Joel Biju';
 
-const inter = Inter({ subsets: ['latin'] });
+const displayFont = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['400', '500', '600', '700'],
+});
+
+const bodyFont = IBM_Plex_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  weight: ['400', '500', '600'],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -76,18 +85,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html
+      lang="en"
+      className={`${displayFont.variable} ${bodyFont.variable} dark`}
+    >
       <head>
         <link rel="icon" href="/favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${inter.className} min-h-screen transition-colors duration-300
-        dark:bg-gray-900 dark:text-white
-        light:bg-gray-50 light:text-gray-900`}>
+      <body
+        className={`
+          min-h-screen transition-colors duration-300
+          font-body bg-ink-900 text-ink-fg
+        `}
+      >
         <ThemeProvider>
           <StarryBackground />
-          <ThemeToggle />
           <Navigation />
           <main>
             {children}

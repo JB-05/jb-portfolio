@@ -51,7 +51,7 @@ const education = [
 
 export const About = () => {
   return (
-    <Section id="about" fullHeight className="py-8">
+    <Section id="about" fullHeight className="py-12">
       <Container>
         <div className="max-w-4xl mx-auto space-y-10">
           {/* Header */}
@@ -62,10 +62,10 @@ export const About = () => {
             transition={{ duration: 0.5 }}
             className="text-center space-y-4"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              About <span className="text-blue-400">Me</span>
+            <h2 className="font-display text-3xl md:text-4xl font-semibold text-ink-fg">
+              About <span className="gradient-text">Me</span>
             </h2>
-            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto space-y-3">
+            <p className="text-ink-fg-soft text-base md:text-lg max-w-2xl mx-auto space-y-3">
               <span>
                 I&apos;m a detail-driven Full-Stack and Mobile App Developer with a strong foundation in computer science and engineering.
                 I focus on architecting resilient systems, shaping intuitive user experiences, and iterating quickly with modern tooling.
@@ -96,17 +96,17 @@ export const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition-colors"
+                className="glass-neu-card p-4 hover:shadow-neu-glow-mint transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <skill.icon className="text-blue-400 text-xl" />
-                  <h3 className="text-lg font-semibold text-white">{skill.category}</h3>
+                  <skill.icon className="text-accent-mint text-xl" />
+                  <h3 className="text-lg font-semibold text-ink-fg">{skill.category}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {skill.items.map((item) => (
                     <span
                       key={item}
-                      className="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm"
+                      className="px-3 py-1 rounded-pill bg-ink-800/80 text-accent-mint text-sm"
                     >
                       {item}
                     </span>
@@ -122,17 +122,17 @@ export const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gray-800 rounded-xl p-4 hover:bg-gray-700 transition-colors"
+            className="glass-neu-card p-4 hover:shadow-neu-glow-apricot transition-shadow"
           >
             <div className="flex items-center gap-3 mb-3">
-              <FaBriefcase className="text-blue-400 text-xl" />
-              <h3 className="text-xl font-semibold text-white">Productivity Tools</h3>
+              <FaBriefcase className="text-accent-apricot text-xl" />
+              <h3 className="text-xl font-semibold text-ink-fg">Productivity Tools</h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {['Notion', 'Microsoft Office', 'LaTeX'].map((tool) => (
                 <span
                   key={tool}
-                  className="px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm"
+                  className="px-3 py-1 rounded-pill bg-ink-800/80 text-accent-mint text-sm"
                 >
                   {tool}
                 </span>
@@ -146,33 +146,33 @@ export const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-gray-800 rounded-xl p-6"
+            className="glass-neu-card p-6"
           >
             <div className="flex items-center gap-3 mb-6">
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-blue-400 text-xl">
                 <FaBook />
               </span>
-              <h3 className="text-xl font-semibold text-white">Education</h3>
+              <h3 className="text-xl font-semibold text-ink-fg">Education</h3>
             </div>
             <div className="space-y-6">
               {education.map((edu) => (
                 <div key={edu.degree} className="space-y-2 border-b border-gray-700/60 pb-6 last:border-none last:pb-0">
-                  <h4 className="text-lg font-semibold text-white">{edu.degree}</h4>
+                  <h4 className="text-lg font-semibold text-ink-fg">{edu.degree}</h4>
                   <a
                     href={edu.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-400 text-sm hover:text-blue-300 transition-colors"
+                    className="text-accent-mint text-sm hover:text-accent-apricot transition-colors"
                   >
                     {edu.school}
                   </a>
-                  <p className="text-gray-400 text-sm">{edu.year}</p>
-                  <p className="text-gray-300 text-sm">{edu.description}</p>
+                  <p className="text-ink-fg-muted text-sm">{edu.year}</p>
+                  <p className="text-ink-fg-soft text-sm">{edu.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {edu.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 bg-blue-500/10 text-blue-300 rounded-full text-xs uppercase tracking-wide"
+                        className="px-3 py-1 rounded-pill bg-ink-800/80 text-accent-mint text-xs uppercase tracking-wide"
                       >
                         {skill}
                       </span>
